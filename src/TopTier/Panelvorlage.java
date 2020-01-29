@@ -40,7 +40,7 @@ public class Panelvorlage extends JPanel {
 	}
 	
 	public void beautifyButton(JButton btn) {
-		btn.setBackground(Color.CYAN);
+		btn.setBackground(Color.WHITE);
 		btn.setForeground(Color.BLACK);
 	}
 	

@@ -35,7 +35,18 @@ public class Impressum extends Panelvorlage {
 					buttonStartseiteActionPerformed(e);
 				}
 			});
-			buttonStartseite.setBounds(114, 155, 141, 35);
+			buttonStartseite.setBounds(36, 170, 141, 35);
+			add(buttonStartseite);
+		}
+		{
+			buttonStartseite = new JButton("Warenkorb leeren");
+			this.beautifyButton(buttonStartseite);
+			buttonStartseite.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					buttonStartseiteActionPerformed(e);
+				}
+			});
+			buttonStartseite.setBounds(263, 170, 141, 35);
 			add(buttonStartseite);
 		}
 	}
