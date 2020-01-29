@@ -1,26 +1,19 @@
 package Admin;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.io.File;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JSeparator;
-import java.awt.Color;
-import java.awt.Component;
-import javax.swing.border.CompoundBorder;
-import javax.swing.UIManager;
 import java.awt.Font;
 
+import javax.swing.JFrame;
+import javax.swing.JSeparator;
+import javax.swing.JLabel;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+
 public class lieferantHinzufügenDaten extends JFrame {
-	private JLabel labelAuswahl;
-	private JPanel panel;
 	private JSeparator separator;
 	private JLabel labelNewLabel;
+	/**
+	 * @wbp.nonvisual location=-10,89
+	 */
 
 	/**
 	 * Launch the application.
@@ -45,39 +38,31 @@ public class lieferantHinzufügenDaten extends JFrame {
 		initGUI();
 	}
 	private void initGUI() {
+		getContentPane().setBackground(new Color(255, 255, 255));
+		getContentPane().setForeground(new Color(102, 205, 170));
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 711, 526);
-		JPanel contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		{
-			labelAuswahl = new JLabel("Kategorie Auswahl");
-			labelAuswahl.setFont(new Font("Segoe UI", Font.PLAIN, 33));
-			labelAuswahl.setForeground(Color.BLACK);
-			labelAuswahl.setBorder(new CompoundBorder());
-			labelAuswahl.setBackground(Color.WHITE);
-			labelAuswahl.setBounds(189, 0, 406, 109);
-			contentPane.add(labelAuswahl);
-			labelAuswahl.setOpaque(true);
-		}
-		{
-			panel = new JPanel();
-			panel.setBounds(10, 120, 631, -3);
-			contentPane.add(panel);
-		}
+		getContentPane().setLayout(null);
 		{
 			separator = new JSeparator();
-			separator.setBounds(10, 115, 675, 2);
-			contentPane.add(separator);
+			separator.setBounds(10, 53, 675, 2);
+			getContentPane().add(separator);
 		}
 		{
-			labelNewLabel = new JLabel("");
-			labelNewLabel.setIcon(new ImageIcon("LOGO.png"));
-			labelNewLabel.setBounds(35, 211, 310, 156);
-			contentPane.add(labelNewLabel);
+			JLabel TopTierLabel = new JLabel("TopTier");
+			TopTierLabel.setOpaque(true);
+			TopTierLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			TopTierLabel.setFont(new Font("Georgia", Font.BOLD, 25));
+			TopTierLabel.setBackground(new Color(102, 205, 170));
+			TopTierLabel.setForeground(new Color(255, 255, 255));
+			TopTierLabel.setBounds(0, 0, 695, 54);
+			getContentPane().add(TopTierLabel);
+		}
+		{
+			labelNewLabel = new JLabel("New label");
+			labelNewLabel.setBounds(0, 53, 695, 52);
+			getContentPane().add(labelNewLabel);
 		}
 	}
 }
