@@ -15,12 +15,11 @@ import java.awt.Component;
 import javax.swing.border.CompoundBorder;
 import javax.swing.UIManager;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class lieferantHinzuf¸genDaten extends JFrame {
-	private JLabel labelAuswahl;
 	private JPanel panel;
-	private JSeparator separator;
-	private JLabel labelNewLabel;
+	private JLabel label‹berschrift;
 
 	/**
 	 * Launch the application.
@@ -49,35 +48,23 @@ public class lieferantHinzuf¸genDaten extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 711, 526);
 		JPanel contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		{
-			labelAuswahl = new JLabel("Kategorie Auswahl");
-			labelAuswahl.setFont(new Font("Segoe UI", Font.PLAIN, 33));
-			labelAuswahl.setForeground(Color.BLACK);
-			labelAuswahl.setBorder(new CompoundBorder());
-			labelAuswahl.setBackground(Color.WHITE);
-			labelAuswahl.setBounds(189, 0, 406, 109);
-			contentPane.add(labelAuswahl);
-			labelAuswahl.setOpaque(true);
-		}
 		{
 			panel = new JPanel();
 			panel.setBounds(10, 120, 631, -3);
 			contentPane.add(panel);
 		}
 		{
-			separator = new JSeparator();
-			separator.setBounds(10, 115, 675, 2);
-			contentPane.add(separator);
-		}
-		{
-			labelNewLabel = new JLabel("");
-			labelNewLabel.setIcon(new ImageIcon("LOGO.png"));
-			labelNewLabel.setBounds(35, 211, 310, 156);
-			contentPane.add(labelNewLabel);
+			label‹berschrift = new JLabel("TopTier");
+			label‹berschrift.setFont(new Font("Georgia", Font.ITALIC, 30));
+			label‹berschrift.setHorizontalAlignment(SwingConstants.CENTER);
+			label‹berschrift.setOpaque(true);
+			label‹berschrift.setBackground(new Color(102, 205, 170));
+			label‹berschrift.setBounds(0, 0, 695, 56);
+			contentPane.add(label‹berschrift);
 		}
 	}
 }
