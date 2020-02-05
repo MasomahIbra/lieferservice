@@ -1,8 +1,6 @@
 package Admin;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-
 import javax.swing.JFrame;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
@@ -11,6 +9,7 @@ import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.EventQueue;
 
+import java.awt.Color;
 import javax.swing.SwingConstants;
 
 public class lieferantHinzufügenDaten extends JFrame {
@@ -69,6 +68,4 @@ public class lieferantHinzufügenDaten extends JFrame {
 		}
 	}
 	
-	protected void do_Suchen_actionPerformed(ActionEvent e) {
-	}
 }
