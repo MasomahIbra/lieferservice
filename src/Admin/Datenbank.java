@@ -22,7 +22,7 @@ public class Datenbank {
 			Class.forName ("sqlite-jdbc-3.7.2.jar");
 
 			// Verbindung initialisieren.
-			String datei = "";
+			String datei = "LieferantenDatenbank.sql";
 			String url = "sqlite-jdbc-3.7.2.jar:" + datei;
 			conn =  DriverManager.getConnection (url);
 		}
