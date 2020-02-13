@@ -46,6 +46,7 @@ public class MainGui extends JFrame {
 		panels.put(Views.profil, this.profil);
 		panels.put(Views.impressum, this.impressum);
 	}
+	
 
 	public void switchTo(Views v) {
 		setContentPane(this.panels.get(v));
