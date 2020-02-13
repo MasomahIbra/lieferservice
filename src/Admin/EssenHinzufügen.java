@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class lieferantHinzufügen {
+public class EssenHinzufügen {
 
 	public static void main(String[] args) {
 	
