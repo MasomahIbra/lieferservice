@@ -1,5 +1,5 @@
 
-package Admin;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Datenbank {
+public class DaoDantenbank {
 
 	static Connection conn = null;
 	
@@ -50,30 +50,5 @@ public class Datenbank {
 		return resultSet;
 	}
 	
-	/*
-			// Erzeugen einer SQL-Anweisung.
 
-			
-			//  Daten auslesen Datensatzzeiger auf den ersten Datensatz setzen.
-			while(resultSet.next()) { 
-				// Daten auslesen.
-				String text = resultSet.getString("id");
-				text  +=", " + resultSet.getString("Vorname");
-				text +=", " + resultSet.getString("ID");
-				text +=", " + resultSet.getString("Geburtsdatum");
-				text +=", " + resultSet.getString("Fuehrerschein");
-				text +=", " + resultSet.getString("Ort");
-				text +=", " + resultSet.getString("Hausnummer");
-				text +=", " +  resultSet.getString("Eigener_Kunde");
-				System.out.println(text);
-				
-			}
-	} catch (ClassNotFoundException er) {
-		er.printStackTrace();
-	} catch (SQLException er) {
-		// TODO Auto-generated catch block
-		er.printStackTrace();
-		}
-	}
-	*/
 }
