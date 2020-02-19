@@ -1,34 +1,33 @@
 package Admin;
 
 import java.awt.Font;
-
 import javax.swing.JFrame;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
 public class lieferantHinzufügenDaten extends JFrame {
+	
 	private JSeparator separator;
 	private JLabel labelNewLabel;
 	/**
 	 * @wbp.nonvisual location=-10,89
 	 */
 
+
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					lieferantHinzufügenDaten frame = new lieferantHinzufügenDaten();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		
+		lieferantHinzufügenDaten frame = new lieferantHinzufügenDaten();
+				
 	}
 
 	/**
@@ -38,6 +37,7 @@ public class lieferantHinzufügenDaten extends JFrame {
 		initGUI();
 	}
 	private void initGUI() {
+		setVisible(true);
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setForeground(new Color(102, 205, 170));
 		setBackground(Color.WHITE);
@@ -60,9 +60,8 @@ public class lieferantHinzufügenDaten extends JFrame {
 			getContentPane().add(TopTierLabel);
 		}
 		{
-			labelNewLabel = new JLabel("New label");
-			labelNewLabel.setBounds(0, 53, 695, 52);
-			getContentPane().add(labelNewLabel);
+
 		}
 	}
+	
 }
