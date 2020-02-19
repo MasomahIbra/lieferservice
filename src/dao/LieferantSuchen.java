@@ -58,7 +58,7 @@ public class LieferantSuchen extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		{
-			labelSuchbegrifflndername = new JLabel("Adresse");
+			labelSuchbegrifflndername = new JLabel("Adresse :");
 			labelSuchbegrifflndername.setBounds(10, 11, 165, 39);
 			contentPane.add(labelSuchbegrifflndername);
 		}
@@ -70,14 +70,14 @@ public class LieferantSuchen extends JFrame {
 					do_textField_keyReleased(e);
 				}
 			});
-			textField.setBounds(75, 11, 388, 39);
+			textField.setBounds(75, 20, 388, 20);
 			contentPane.add(textField);
 			textField.setColumns(10);
 		}
 
 		{
 			textArea = new JTextArea();
-			textArea.setBounds(10, 61, 474, 337);
+			textArea.setBounds(10, 57, 474, 341);
 			contentPane.add(textArea);
 		}
 	}
