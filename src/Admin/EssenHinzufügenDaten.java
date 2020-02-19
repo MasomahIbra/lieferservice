@@ -12,7 +12,7 @@ import java.awt.EventQueue;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
-public class lieferantHinzufügenDaten extends JFrame {
+public class EssenHinzufügenDaten extends JFrame {
 	
 	private JSeparator separator;
 	private JLabel labelNewLabel;
@@ -26,14 +26,14 @@ public class lieferantHinzufügenDaten extends JFrame {
 	 */
 	public static void main(String[] args) {
 		
-		lieferantHinzufügenDaten frame = new lieferantHinzufügenDaten();
+		EssenHinzufügenDaten frame = new EssenHinzufügenDaten();
 				
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public lieferantHinzufügenDaten() {
+	public EssenHinzufügenDaten() {
 		initGUI();
 	}
 	private void initGUI() {
