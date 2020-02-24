@@ -46,10 +46,7 @@ public class Panelvorlage extends JPanel {
 		add(Foto);
 	}
 	
-	private void setIconImage(Image image) {
-		// TODO Auto-generated method stub
 		
-	}
 	public void setUeberschrift(String Ueberschrift) {
 		this.Ueberschrift.setText(Ueberschrift);
 	}
