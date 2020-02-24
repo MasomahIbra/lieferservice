@@ -13,7 +13,7 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 
 public class EssenHinzufügenDaten extends JFrame {
-	
+
 	private JSeparator separator;
 	private JLabel labelNewLabel;
 	/**
@@ -25,9 +25,9 @@ public class EssenHinzufügenDaten extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
+
 		EssenHinzufügenDaten frame = new EssenHinzufügenDaten();
-				
+
 	}
 
 	/**
@@ -61,7 +61,27 @@ public class EssenHinzufügenDaten extends JFrame {
 		}
 		{
 
+
+
+			if(e.getSource()== btnLÖSCHEN)
+			{
+				Connection conn = null; //Verbindung zum Server
+				Statement stmt = null;  //die abzusetzende SQL-Anweisung
+				try
+				{
+					Class.forName("com.mysql.jdbc.Driver").newInstance();
+					Fehler.setText("Treiber OK.");
+					conn = DriverManager.getConnection("jdbc:mysql://10.1.123.215/dvdverleih?user=software&password=verleih");
+					Fehler.setText("Verbindung erhalten: " + conn.toString());
+				}
+				catch (Exception ex)
+				{
+					Fehler.setText("Fehler beim Verbindungsaufbau!" + ex.toString()); 
+				} 
+
+			}
 		}
+
 	}
-	
+}
 }
