@@ -34,7 +34,7 @@ public class LieferantenDAO {
 
 	public void löschen (Lieferant id) {
 		System.out.println("Eintrag wurde gelöscht: ");
-		  public void delete() throws DB_FehlerException {
+	/*	  public void löschen() throws DB_FehlerException {
 		        int id = this.emailkontakt.getId();
 		        Connection conn = null;
 		        try {
@@ -48,7 +48,7 @@ public class LieferantenDAO {
 		            e.printStackTrace();
 		            throw new DB_FehlerException("Dieser Vorgang ist gescheitert");      
 		        }
-		    }
+		    }*/
 	}
 	
 	
