@@ -1,5 +1,5 @@
  
-package Admin;
+package dao;
 
 public class FehlerException extends Exception{
 

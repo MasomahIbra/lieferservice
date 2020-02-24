@@ -29,8 +29,8 @@ public class Panelvorlage extends JPanel {
 		setLayout(null);
 		{
 			Ueberschrift = new JTextField();
-			Ueberschrift.setBackground(Color.CYAN);
-			Ueberschrift.setForeground(Color.BLACK);
+			Ueberschrift.setBackground(Color.red);
+			Ueberschrift.setForeground(Color.WHITE);
 			Ueberschrift.setHorizontalAlignment(SwingConstants.CENTER);
 			Ueberschrift.setEditable(false);
 			Ueberschrift.setFont(new Font("Tahoma", Font.PLAIN, 30));

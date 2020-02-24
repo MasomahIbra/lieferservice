@@ -1,4 +1,4 @@
-package Admin;
+package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -178,7 +178,7 @@ public class Benutzer {
 			
 			// Datenbankeintrag des Benutzers erfragen
 			sql ="SELECT * FROM " + TABLE_NAME + " WHERE " + NAME_NAME + "=\"" + name + "\"";
-			rs = Datenbank.abfragen(sql);
+			rs = DaoDantenbank.abfragen(sql);
 			
 			// Falls der Benutzername nicht in der Datenbank gefunden wurde,
 			// scheitert die Anmeldung
