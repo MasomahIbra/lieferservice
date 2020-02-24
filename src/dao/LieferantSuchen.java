@@ -77,7 +77,7 @@ public class LieferantSuchen extends JFrame {
 
 		{
 			textArea = new JTextArea();
-			textArea.setBounds(10, 57, 474, 341);
+			textArea.setBounds(0, 57, 494, 352);
 			contentPane.add(textArea);
 		}
 	}
