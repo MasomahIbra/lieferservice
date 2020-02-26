@@ -3,6 +3,8 @@ package dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Datenbank.DaoDantenbank;
+
 
 public class Benutzer {
 	int 	id;

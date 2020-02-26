@@ -68,6 +68,7 @@ public class LieferantSuchen extends JFrame {
 				@Override
 				public void keyReleased(KeyEvent e) {
 					do_textField_keyReleased(e);
+					
 				}
 			});
 			textField.setBounds(75, 20, 388, 20);
@@ -90,11 +91,11 @@ public class LieferantSuchen extends JFrame {
 
 			// Verbindung initialisieren.
 			String datei = "Lieferanten.sql";
-			String url = "sqlite-jdbc-3.7.2:" + datei;
+			String url = "jdbc:sqlite:" + datei;
 			Connection conn =  DriverManager.getConnection (url);
 
 			// Erzeugen einer SQL-Anweisung.
-			String sql = "SELECT * from Essen where name like ?";
+			String sql = "SELECT * from Lieferanten where * like ?";
 			PreparedStatement statement = conn.prepareStatement (sql);
 			statement.setString(1, "%"+this.textField.getText()+"%");
 

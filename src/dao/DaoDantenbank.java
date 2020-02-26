@@ -19,11 +19,11 @@ public class DaoDantenbank {
 	private static void oeffneDatenbank() {
 		try {
 			// Datenbankklasse dynamisch erzeugen.
-			Class.forName ("sqlite-jdbc-3.7.2.jar");
+			Class.forName ("org.sqlite.JDBC");
 
 			// Verbindung initialisieren.
-			String datei = "Lieferanten.sql";
-			String url = "sqlite-jdbc-3.7.2.jar:" + datei;
+			String datei = "Lieferanten.db3";
+			String url = "jdbc:sqlite:" + datei;
 			conn =  DriverManager.getConnection (url);
 		}
 		catch (Exception e) {
