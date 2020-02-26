@@ -89,8 +89,8 @@ public class LieferantSuchen extends JFrame {
 			Class.forName ("org.sqlite.JDBC");
 
 			// Verbindung initialisieren.
-			String datei = "World.db3";
-			String url = "jdbc:sqlite:" + datei;
+			String datei = "Lieferanten.sql";
+			String url = "sqlite-jdbc-3.7.2:" + datei;
 			Connection conn =  DriverManager.getConnection (url);
 
 			// Erzeugen einer SQL-Anweisung.

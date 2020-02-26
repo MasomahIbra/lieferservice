@@ -22,7 +22,7 @@ public class DaoDantenbank {
 			Class.forName ("sqlite-jdbc-3.7.2.jar");
 
 			// Verbindung initialisieren.
-			String datei = "LieferantenDatenbank.sql";
+			String datei = "Lieferanten.sql";
 			String url = "sqlite-jdbc-3.7.2.jar:" + datei;
 			conn =  DriverManager.getConnection (url);
 		}
