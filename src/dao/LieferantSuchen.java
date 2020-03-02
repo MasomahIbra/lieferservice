@@ -89,7 +89,7 @@ public class LieferantSuchen extends JFrame {
 			Class.forName ("org.sqlite.JDBC");
 
 			// Verbindung initialisieren.
-			String datei = "World.db3";
+			String datei = "pp.db";
 			String url = "jdbc:sqlite:" + datei;
 			Connection conn =  DriverManager.getConnection (url);
 
@@ -99,7 +99,7 @@ public class LieferantSuchen extends JFrame {
 			statement.setString(1, "%"+this.textField.getText()+"%");
 
 
-			// SQL-Anweisung ausführen.
+			// SQL-Anweisung ausfï¿½hren.
 			ResultSet resultSet = statement.executeQuery();
 			String ausgabe="";
 			//  Daten auslesen Datensatzzeiger auf den ersten Datensatz setzen.

@@ -32,9 +32,9 @@ public class LieferantenDAO {
 		System.out.println("speichern in DAO:_ " + lieferant.getName());
 	}
 
-	public void löschen (Lieferant id) {
-		System.out.println("Eintrag wurde gelöscht: ");
-	/*	  public void löschen() throws DB_FehlerException {
+	public void loeschen (Lieferant id) {
+		System.out.println("Eintrag wurde gelï¿½scht: ");
+	/*	  public void lï¿½schen() throws DB_FehlerException {
 		        int id = this.emailkontakt.getId();
 		        Connection conn = null;
 		        try {

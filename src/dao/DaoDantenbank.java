@@ -13,7 +13,7 @@ public class DaoDantenbank {
 	
 	
 	/**
-	 * Diese Methode öffnet die Datenbank.
+	 * Diese Methode ï¿½ffnet die Datenbank.
 	 * Wenn ein Fehler auftritt, wird das Programm beendet.
 	 */
 	private static void oeffneDatenbank() {
@@ -22,8 +22,8 @@ public class DaoDantenbank {
 			Class.forName ("sqlite-jdbc-3.7.2.jar");
 
 			// Verbindung initialisieren.
-			String datei = "LieferantenDatenbank.sql";
-			String url = "sqlite-jdbc-3.7.2.jar:" + datei;
+			String datei = "pp.db";
+			String url = "org.sqlite.JDBC" + datei;
 			conn =  DriverManager.getConnection (url);
 		}
 		catch (Exception e) {
@@ -34,16 +34,16 @@ public class DaoDantenbank {
 	
 	
 	/**
-	 * Diese Methode führt eine Datenbankabfrage durch.
+	 * Diese Methode fï¿½hrt eine Datenbankabfrage durch.
 	 * 
 	 * @param sql SQL-Anweisung mit der Datenbankabfrage
 	 * @throws SQLException, falls ein Fehler auftritt
 	 */
 	public static ResultSet abfragen(String sql) throws SQLException{
-		// Falls das noch nicht passiert ist, öffnen wir die Datenbank
+		// Falls das noch nicht passiert ist, ï¿½ffnen wir die Datenbank
 		if (conn==null) oeffneDatenbank();
 		
-		// SQL Abfrage durchführen
+		// SQL Abfrage durchfï¿½hren
 		PreparedStatement statement = conn.prepareStatement (sql);
 		ResultSet resultSet = statement.executeQuery();	
 		
