@@ -22,7 +22,7 @@ public class DaoDantenbank {
 			Class.forName ("org.sqlite.JDBC");
 
 			// Verbindung initialisieren.
-			String datei = "Lieferanten.db3";
+			String datei = "pp.db";
 			String url = "jdbc:sqlite:" + datei;
 			conn =  DriverManager.getConnection (url);
 		}

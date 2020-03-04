@@ -211,7 +211,7 @@ public class Benutzer {
 	}
 	
 public static void main (String[] args) {
-	if (benutzerAnmelden("Administrator2", "Admin01")) {
+	if (benutzerAnmelden("Administrator", "Admin01")) {
 		System.out.println("Hurra");
 	} else {
 		System.out.println("So ein Frust");
