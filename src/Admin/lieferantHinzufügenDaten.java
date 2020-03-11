@@ -1,4 +1,4 @@
-package Admin;
+	package Admin;
 
 import java.awt.Font;
 import javax.swing.JFrame;
@@ -63,5 +63,6 @@ public class lieferantHinzufügenDaten extends JFrame {
 
 		}
 	}
+	
 	
 }
