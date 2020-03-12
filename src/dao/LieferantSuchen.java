@@ -58,7 +58,7 @@ public class LieferantSuchen extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		{
-			labelSuchbegrifflndername = new JLabel("Adresse");
+			labelSuchbegrifflndername = new JLabel("Adresse :");
 			labelSuchbegrifflndername.setBounds(10, 11, 165, 39);
 			contentPane.add(labelSuchbegrifflndername);
 		}
@@ -68,16 +68,17 @@ public class LieferantSuchen extends JFrame {
 				@Override
 				public void keyReleased(KeyEvent e) {
 					do_textField_keyReleased(e);
+					
 				}
 			});
-			textField.setBounds(75, 11, 388, 39);
+			textField.setBounds(75, 20, 388, 20);
 			contentPane.add(textField);
 			textField.setColumns(10);
 		}
 
 		{
 			textArea = new JTextArea();
-			textArea.setBounds(10, 61, 474, 337);
+			textArea.setBounds(0, 57, 494, 352);
 			contentPane.add(textArea);
 		}
 	}
@@ -89,12 +90,12 @@ public class LieferantSuchen extends JFrame {
 			Class.forName ("org.sqlite.JDBC");
 
 			// Verbindung initialisieren.
-			String datei = "World.db3";
+			String datei = "Lieferanten.sql";
 			String url = "jdbc:sqlite:" + datei;
 			Connection conn =  DriverManager.getConnection (url);
 
 			// Erzeugen einer SQL-Anweisung.
-			String sql = "SELECT * from Essen where name like ?";
+			String sql = "SELECT * from Lieferanten where * like ?";
 			PreparedStatement statement = conn.prepareStatement (sql);
 			statement.setString(1, "%"+this.textField.getText()+"%");
 

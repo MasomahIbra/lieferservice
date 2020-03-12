@@ -1,5 +1,6 @@
+package lieferservice;
 
-package dao;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,11 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DaoDantenbank {
+public class Datenbank {
 
 	static Connection conn = null;
-
-
+	
+	
 	/**
 	 * Diese Methode öffnet die Datenbank.
 	 * Wenn ein Fehler auftritt, wird das Programm beendet.
@@ -31,8 +32,8 @@ public class DaoDantenbank {
 			System.exit(1);
 		}
 	}
-
-
+	
+	
 	/**
 	 * Diese Methode führt eine Datenbankabfrage durch.
 	 * 
@@ -40,15 +41,40 @@ public class DaoDantenbank {
 	 * @throws SQLException, falls ein Fehler auftritt
 	 */
 	public static ResultSet abfragen(String sql) throws SQLException{
-		//Falls das noch nicht passiert ist, öffnen wir die Datenbank
+		// Falls das noch nicht passiert ist, öffnen wir die Datenbank
 		if (conn==null) oeffneDatenbank();
-
+		
 		// SQL Abfrage durchführen
 		PreparedStatement statement = conn.prepareStatement (sql);
 		ResultSet resultSet = statement.executeQuery();	
-
+		
 		return resultSet;
 	}
+	
+	/*
+			// Erzeugen einer SQL-Anweisung.
 
-
+			
+			//  Daten auslesen Datensatzzeiger auf den ersten Datensatz setzen.
+			while(resultSet.next()) { 
+				// Daten auslesen.
+				String text = resultSet.getString("id");
+				text  +=", " + resultSet.getString("Vorname");
+				text +=", " + resultSet.getString("ID");
+				text +=", " + resultSet.getString("Geburtsdatum");
+				text +=", " + resultSet.getString("Fuehrerschein");
+				text +=", " + resultSet.getString("Ort");
+				text +=", " + resultSet.getString("Hausnummer");
+				text +=", " +  resultSet.getString("Eigener_Kunde");
+				System.out.println(text);
+				
+			}
+	} catch (ClassNotFoundException er) {
+		er.printStackTrace();
+	} catch (SQLException er) {
+		// TODO Auto-generated catch block
+		er.printStackTrace();
+		}
+	}
+	*/
 }

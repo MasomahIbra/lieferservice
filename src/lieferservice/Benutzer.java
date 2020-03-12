@@ -1,4 +1,4 @@
-package dao;
+package lieferservice;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,16 +7,20 @@ import java.sql.SQLException;
 public class Benutzer {
 	int 	id;
 	String	name,
-			password,
-			programmAdministrator,
-			restaurantAdministrator,
-			bestellungsBearbeiter,
-			abrechner;
-	static Benutzer angemeldeterBenutzer=null;
-	
+	password,
+	programmAdministrator,
+	restaurantAdministrator,
+	bestellungsBearbeiter,
+	abrechner;
+
+	// Der Gastbenutzer hat die Rechte des Gastes. Diese Instanz darf nicht verändert werden
+	private static Benutzer GASTBENUTZER = new Benutzer(true);
+
+	static Benutzer angemeldeterBenutzer = GASTBENUTZER;
+
 	// Das ist der Name der Tabelle für die Benutzer in der Datenbank
 	private static final String TABLE_NAME = "Benutzer";
-	
+
 	// Das sind die Name der Spalten in der Datenbank"
 	private static final String NAME_NAME = "Name";
 	private static final String NAME_PASSWORT = "Passwort";
@@ -24,13 +28,32 @@ public class Benutzer {
 	private static final String NAME_RA = "RestaurantAdministrator";
 	private static final String NAME_BB = "BestellungsBearbeiter";
 	private static final String NAME_ABRECHNER = "Abrechner";
-	
 
-	
+
+	/**
+	 * Konstruktor
+	 * @param gastBenutzerAnlegen: true, falls der Gastbenutzer angelegt werden soll
+	 */
+	private Benutzer(boolean gastBenutzerAnlegen) {
+		if (gastBenutzerAnlegen) {
+			this.id = -1;
+			this.name = "Gast";
+			this.password = "";
+			this.programmAdministrator = "N";
+			this.restaurantAdministrator="N";
+			this.bestellungsBearbeiter="N";
+			this.abrechner="N";
+		}
+	}
+
+
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
+	public void setId(int id) throws IllegalStateException {
+		if (this == GASTBENUTZER) {
+			throw new IllegalStateException("Gastbenutzer darf nicht verändert werden");
+		}
 		this.id = id;
 	}
 
@@ -39,7 +62,10 @@ public class Benutzer {
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
+	public void setName(String name) throws IllegalStateException {
+		if (this == GASTBENUTZER) {
+			throw new IllegalStateException("Gastbenutzer darf nicht verändert werden");
+		}
 		this.name = name;
 	}
 
@@ -48,7 +74,10 @@ public class Benutzer {
 	/**
 	 * @param password the password to set
 	 */
-	public void setPassword(String password) {
+	public void setPassword(String password) throws IllegalStateException {
+		if (this == GASTBENUTZER) {
+			throw new IllegalStateException("Gastbenutzer darf nicht verändert werden");
+		}
 		this.password = password;
 	}
 
@@ -57,7 +86,10 @@ public class Benutzer {
 	/**
 	 * @param programmAdministrator the programmAdministrator to set
 	 */
-	public void setProgrammAdministrator(String programmAdministrator) {
+	public void setProgrammAdministrator(String programmAdministrator) throws IllegalStateException {
+		if (this == GASTBENUTZER) {
+			throw new IllegalStateException("Gastbenutzer darf nicht verändert werden");
+		}
 		this.programmAdministrator = programmAdministrator;
 	}
 
@@ -66,7 +98,10 @@ public class Benutzer {
 	/**
 	 * @param restaurantAdministrator the restaurantAdministrator to set
 	 */
-	public void setRestaurantAdministrator(String restaurantAdministrator) {
+	public void setRestaurantAdministrator(String restaurantAdministrator) throws IllegalStateException {
+		if (this == GASTBENUTZER) {
+			throw new IllegalStateException("Gastbenutzer darf nicht verändert werden");
+		}
 		this.restaurantAdministrator = restaurantAdministrator;
 	}
 
@@ -75,7 +110,10 @@ public class Benutzer {
 	/**
 	 * @param bestellungsBearbeiter the bestellungsBearbeiter to set
 	 */
-	public void setBestellungsBearbeiter(String bestellungsBearbeiter) {
+	public void setBestellungsBearbeiter(String bestellungsBearbeiter) throws IllegalStateException {
+		if (this == GASTBENUTZER) {
+			throw new IllegalStateException("Gastbenutzer darf nicht verändert werden");
+		}
 		this.bestellungsBearbeiter = bestellungsBearbeiter;
 	}
 
@@ -84,7 +122,10 @@ public class Benutzer {
 	/**
 	 * @param abrechner the abrechner to set
 	 */
-	public void setAbrechner(String abrechner) {
+	public void setAbrechner(String abrechner) throws IllegalStateException {
+		if (this == GASTBENUTZER) {
+			throw new IllegalStateException("Gastbenutzer darf nicht verändert werden");
+		}
 		this.abrechner = abrechner;
 	}
 
@@ -129,7 +170,7 @@ public class Benutzer {
 	/**
 	 * @return the programmAdministrator
 	 */
-	public boolean getProgrammAdministrator() {
+	public boolean isProgrammAdministrator() {
 		return programmAdministrator.equals("J");
 	}
 
@@ -138,7 +179,7 @@ public class Benutzer {
 	/**
 	 * @return the restaurantAdministrator
 	 */
-	public boolean getRestaurantAdministrator() {
+	public boolean isRestaurantAdministrator() {
 		return restaurantAdministrator.equals("J");
 	}
 
@@ -147,7 +188,7 @@ public class Benutzer {
 	/**
 	 * @return the bestellungsBearbeiter
 	 */
-	public boolean getBestellungsBearbeiter() {
+	public boolean isBestellungsBearbeiter() {
 		return bestellungsBearbeiter.equals("J");
 	}
 
@@ -156,10 +197,10 @@ public class Benutzer {
 	/**
 	 * @return the abrechner
 	 */
-	public boolean getAbrechner() {
+	public boolean isAbrechner() {
 		return abrechner.equals("J");
 	}
-	
+
 	/**
 	 * Diese Methode prüft, ob der angegebene Benutzer in der Datenbank
 	 * mit dem angegebenen Passwort existiert. Falls die Angaben richtig sind,
@@ -170,28 +211,28 @@ public class Benutzer {
 	 * @return true, wenn die Anmeldung erfolgreich war oder false, falls die 
 	 * 			Anmeldung nicht erfolgreich war.
 	 */
-	
+
 	public static boolean benutzerAnmelden(String name, String password) {
 		try {
 			String sql, pw;
 			ResultSet rs;
-			
+
 			// Datenbankeintrag des Benutzers erfragen
 			sql ="SELECT * FROM " + TABLE_NAME + " WHERE " + NAME_NAME + "=\"" + name + "\"";
-			rs = DaoDantenbank.abfragen(sql);
-			
+			rs = Datenbank.abfragen(sql);
+
 			// Falls der Benutzername nicht in der Datenbank gefunden wurde,
 			// scheitert die Anmeldung
 			if (rs.isAfterLast()) {
 				return false;
 			}
-			
+
 			// Passwort überprüfen
 			pw = rs.getString("Passwort");
 			if (pw.equals(password)) {
-				
+
 				// Wenn das Passwort ok ist, dann melden wir den Benutzer an
-				angemeldeterBenutzer = new Benutzer();
+				angemeldeterBenutzer = new Benutzer(false);
 				angemeldeterBenutzer.name = name;
 				angemeldeterBenutzer.password= password;
 				angemeldeterBenutzer.programmAdministrator = rs.getString(NAME_PA);
@@ -209,18 +250,22 @@ public class Benutzer {
 			return false;
 		}
 	}
-	
-public static void main (String[] args) {
-	if (benutzerAnmelden("Administrator", "Admin01")) {
-		System.out.println("Hurra");
-	} else {
-		System.out.println("So ein Frust");
+
+
+	/**
+	 * Diese Methode ermittelt, ob der Gastbenutzer angemeldet ist
+	 */
+	public static boolean isGastbenutzerAngemeldet() {
+		return angemeldeterBenutzer == GASTBENUTZER;
 	}
-		
-}
-
-
-
+	
+	
+	/**
+	 * Benutzer abmelden
+	 */
+	public static void abmelden() {
+		angemeldeterBenutzer = GASTBENUTZER;
+	}
 
 
 }
