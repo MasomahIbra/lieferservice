@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 public class Datenbank {
 
 	static Connection conn = null;
@@ -28,6 +30,7 @@ public class Datenbank {
 			conn =  DriverManager.getConnection (url);
 		}
 		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
 			e.printStackTrace();
 			System.exit(1);
 		}

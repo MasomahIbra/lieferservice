@@ -409,8 +409,7 @@ public class Benutzer {
 			ResultSet rs;
 	
 			// Datenbankeintrag des Benutzers erfragen
-//			sql ="SELECT * FROM " + TABLE_NAME + " ORDER BY " + NAME_NAME + " COLLATE NOCASE ASC";
-			sql = "Select * FROM Irgendwas";
+			sql ="SELECT * FROM " + TABLE_NAME + " ORDER BY " + NAME_NAME + " COLLATE NOCASE ASC";
 			rs = Datenbank.abfragen(sql);
 			
 			while (rs.next()) {
