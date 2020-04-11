@@ -36,7 +36,7 @@ public class BenutzerVerwaltenPanel extends JPanel {
 	/*
 	 * Strings mit den Texten der Benutzerverwaltung
 	 */
-	private static final String TITEL_STR = "<html><b>Benutzer</b> verwalten <font color=\"blue\">(c) <i>Masomah <u>Ibrahimi</u></i></font> 2020";
+	private static final String TITEL_STR = "<html><b>Benutzer</b> verwalten";
 	private static final String NEW_STR = "<html><b><u>N</u>euer Benutzer</b>";
 	private static final String EDIT_STR = "<html><b>Benutzer editieren</b>";
 	private static final String DELETE_STR = "<html><b>Benutzer löschen</b>";

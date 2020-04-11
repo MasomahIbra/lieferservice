@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import lieferservice.Benutzer;
 import lieferservice.gui.benutzer.BenutzerVerwaltenPanel;
+import lieferservice.restaurant.RestaurantVerwaltenPanel;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -64,6 +65,53 @@ public class MainJFrame extends JFrame {
 			fensterFuerBenutzerAnpassen();
 		}
 	}
+	
+	
+	/**
+	 * Das ist der Action-Listener für den "Benutzer verwalten"-Button
+	 */
+	private class BenutzerVerwaltenButtonListener implements ActionListener {
+
+		private JPanel kartenPanel;
+		
+		/**
+		 * Konstruktor
+		 */
+		public BenutzerVerwaltenButtonListener(JPanel panel) {
+			this.kartenPanel = panel;
+		}
+		
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			CardLayout layout = (CardLayout) kartenPanel.getLayout();
+			layout.show(this.kartenPanel, BenutzerVerwaltenPanel.NAME);	
+		}
+	}
+	
+	
+	/**
+	 * Das ist der Action-Listener für den "Benutzer verwalten"-Button
+	 */
+	private class RestaurantVerwaltenButtonListener implements ActionListener {
+
+		private JPanel kartenPanel;
+		
+		/**
+		 * Konstruktor
+		 */
+		public RestaurantVerwaltenButtonListener(JPanel panel) {
+			this.kartenPanel = panel;
+		}
+		
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			CardLayout layout = (CardLayout) kartenPanel.getLayout();
+			layout.show(this.kartenPanel, RestaurantVerwaltenPanel.NAME);	
+		}
+		
+	}
 
 
 	/**
@@ -73,6 +121,12 @@ public class MainJFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
+		// Kartenpanel aufbauen
+		kartenPanel = new JPanel(new CardLayout());
+		kartenPanel.add(new BenutzerVerwaltenPanel(), BenutzerVerwaltenPanel.NAME);
+		kartenPanel.add(new GastPanel(), GastPanel.NAME);
+		kartenPanel.add(new RestaurantVerwaltenPanel(), RestaurantVerwaltenPanel.NAME);
+		
 		// Menü aufbauen
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -106,28 +160,24 @@ public class MainJFrame extends JFrame {
 		menuBar.add(mnuAdministrator);
 
 		JMenuItem mi_BenutzerVerwalten = new JMenuItem("Benutzer verwalten");
+		mi_BenutzerVerwalten.addActionListener(new BenutzerVerwaltenButtonListener(kartenPanel));
 		mnuAdministrator.add(mi_BenutzerVerwalten);
 		
 		JMenuItem mi_RestaurantsVerwalten = new JMenuItem("Restaurants verwalten");
+		mi_RestaurantsVerwalten.addActionListener(new RestaurantVerwaltenButtonListener(kartenPanel));
 		mnuAdministrator.add(mi_RestaurantsVerwalten);
+		
 
+		CardLayout cardLayout = (CardLayout) kartenPanel.getLayout();
+		cardLayout.show(kartenPanel, GastPanel.NAME);
+		add(kartenPanel, BorderLayout.CENTER);
 		
 		// Toolbar aufbauen
 		this.toolbar = new ToolBar(new BenutzerAnmeldenListener(this),
 				new BenutzerAbmeldenListener(this),
-				null,
-				null);
+				new BenutzerVerwaltenButtonListener(kartenPanel),
+				new RestaurantVerwaltenButtonListener(kartenPanel));
 		add(toolbar, BorderLayout.PAGE_START);
-		
-
-		// Kartenpanel aufbauen
-		kartenPanel = new JPanel(new CardLayout());
-		kartenPanel.add(new BenutzerVerwaltenPanel(), BenutzerVerwaltenPanel.NAME);
-		kartenPanel.add(new GastPanel(), GastPanel.NAME);
-		
-		CardLayout cardLayout = (CardLayout) kartenPanel.getLayout();
-		cardLayout.show(kartenPanel, GastPanel.NAME);
-		add(kartenPanel, BorderLayout.CENTER);
 		
 		// Statuszeile aufbauen
 		statuszeile = new Statuszeile();

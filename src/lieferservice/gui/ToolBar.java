@@ -92,10 +92,12 @@ public class ToolBar extends JPanel {
 		
 		manageUsersButton = new JButton(loadIcon(FILENAME_USER));
 		manageUsersButton.setToolTipText(USER_TOOLTIP);
+		manageUsersButton.addActionListener(benutzerVerwaltenListener);
 		add (manageUsersButton);
 		
 		manageRestaurantsButton = new JButton(loadIcon(FILENAME_RESTAURANT));
 		manageRestaurantsButton.setToolTipText(RESTAURANT_TOOLTIP);
+		manageRestaurantsButton.addActionListener(restaurantVerwaltenListener);
 		add(manageRestaurantsButton);
 	}
 	

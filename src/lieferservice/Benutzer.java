@@ -122,7 +122,7 @@ public class Benutzer {
 	/**
 	 * @param programmAdministrator the programmAdministrator to set
 	 */
-	public void setProgrammAdministrator(String programmAdministrator) throws IllegalStateException {
+	private void setProgrammAdministrator(String programmAdministrator) throws IllegalStateException {
 		if (this == GASTBENUTZER) {
 			throw new IllegalStateException("Gastbenutzer darf nicht verändert werden");
 		}
@@ -155,7 +155,7 @@ public class Benutzer {
 	/**
 	 * @param restaurantAdministrator the restaurantAdministrator to set
 	 */
-	public void setRestaurantAdministrator(String restaurantAdministrator) throws IllegalStateException {
+	private void setRestaurantAdministrator(String restaurantAdministrator) throws IllegalStateException {
 		if (this == GASTBENUTZER) {
 			throw new IllegalStateException("Gastbenutzer darf nicht verändert werden");
 		}
@@ -186,7 +186,7 @@ public class Benutzer {
 	/**
 	 * @param bestellungsBearbeiter the bestellungsBearbeiter to set
 	 */
-	public void setBestellungsBearbeiter(String bestellungsBearbeiter) throws IllegalStateException {
+	private void setBestellungsBearbeiter(String bestellungsBearbeiter) throws IllegalStateException {
 		if (this == GASTBENUTZER) {
 			throw new IllegalStateException("Gastbenutzer darf nicht verändert werden");
 		}
@@ -219,7 +219,7 @@ public class Benutzer {
 	/**
 	 * @param abrechner the abrechner to set
 	 */
-	public void setAbrechner(String abrechner) throws IllegalStateException {
+	private void setAbrechner(String abrechner) throws IllegalStateException {
 		if (this == GASTBENUTZER) {
 			throw new IllegalStateException("Gastbenutzer darf nicht verändert werden");
 		}
