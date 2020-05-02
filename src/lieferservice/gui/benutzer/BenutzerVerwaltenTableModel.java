@@ -95,7 +95,7 @@ public class BenutzerVerwaltenTableModel implements TableModel {
 	 */
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return rowIndex != 0;
+		return columnIndex != 0;
 	}
 
 	

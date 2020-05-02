@@ -257,10 +257,10 @@ public class BenutzerVerwaltenPanel extends JPanel {
 		gc.gridy = 4;
 		gc.gridwidth=1;
 		gc.gridheight=1;
-		gc.weightx=0.1;
-		gc.weighty=0.01;
+		gc.weightx=0;
+		gc.weighty=0;
 		gc.insets = new Insets(BUTTON_INSET_TOP, BUTTON_INSET_LEFT, BUTTON_INSET_BOTTOM, BUTTON_INSET_RIGHT);
-		gc.fill = GridBagConstraints.BOTH;
+		gc.fill = GridBagConstraints.HORIZONTAL;
 		gc.anchor = GridBagConstraints.SOUTH;
 		JButton benutzerLoeschenButton = new JButton(DELETE_STR);
 		benutzerLoeschenButton.setBackground(GuiSettings.DEFAULT_HIGHLIGHT_COLOR);

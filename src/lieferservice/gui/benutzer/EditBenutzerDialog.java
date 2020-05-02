@@ -3,7 +3,6 @@
  */
 package lieferservice.gui.benutzer;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -25,7 +24,8 @@ import javax.swing.SwingUtilities;
 
 import lieferservice.Benutzer;
 import lieferservice.gui.GuiSettings;
-import lieferservice.gui.MainJFrame;
+import lieferservice.restaurant.Restaurant;
+import lieferservice.restaurant.RestaurantVerwaltenPanel;
 
 /**
  * Dieser Dialog dient zum Erzeugen neuer Benutzer sowie zum Editieren bestehender Benutzer
@@ -36,9 +36,14 @@ public class EditBenutzerDialog extends JDialog {
 	
 	private Benutzer benutzer;	// zu editierender Benutzer. Ist null, wenn ein neuer Benutzer angelegt werden soll
 	private BenutzerVerwaltenPanel parentPanel;
+	private Restaurant restaurant;
+	private RestaurantVerwaltenPanel ueberfenster;
+	
+
 	
 	JTextField txtName;
 	JPasswordField txtPassword1, txtPassword2;
+	
 	
 	
 	/* Strings */
@@ -65,7 +70,6 @@ public class EditBenutzerDialog extends JDialog {
 	 * ActionEventListener des OK-Buttons
 	 */
 	private class OkButtonListener implements ActionListener {
-		
 		EditBenutzerDialog parentWindow;
 		
 		
@@ -168,8 +172,7 @@ public class EditBenutzerDialog extends JDialog {
 		this.parentPanel = parentWindow;
 		fensterAufbauen();
 	}
-	
-	
+
 	/**
 	 * Baut das Fenster auf
 	 */
@@ -306,4 +309,164 @@ public class EditBenutzerDialog extends JDialog {
 		
 		setVisible(true);
 	}
-}
+
+	
+	/**
+	 * Konstruktor für den Dialog, wenn ein bestehendes Restaurant editiert werden soll
+	 * @param parentWindow übergeordnetes Fenster
+	 * @param zuEditierenderRestaurant zu editierender Restaurant
+	 */
+	public EditBenutzerDialog(BenutzerVerwaltenPanel parentWindow, Restaurant zuEditierenderRestaurant) {
+		super((JFrame) SwingUtilities.getWindowAncestor(parentWindow), EDIT_USER_TITLE, true);
+		this.restaurant = zuEditierenderRestaurant;
+		this.parentPanel = parentWindow;
+		fensterAufbauen();
+	}
+	
+
+			/**
+		 * Baut das Fenster auf
+		 */
+		private void fensterBauen() {
+			setBounds(150, 140, 500, 250);
+			setAlwaysOnTop(true);
+			setResizable(false);
+			getContentPane().setBackground(GuiSettings.DEFAULT_HIGHLIGHT_COLOR);
+			
+			GridBagLayout layout = new GridBagLayout();
+			this.setLayout(layout);
+			
+			GridBagConstraints gc = new GridBagConstraints();
+			
+			// Label für den Restaurantnamen
+			gc.gridx = 0;
+			gc.gridy = 0;
+			gc.gridwidth = 1;
+			gc.gridheight=1;
+			gc.weightx=0.1;
+			gc.weighty=0;
+			gc.insets = new Insets(10,20,10,10);
+			gc.fill = GridBagConstraints.NONE;
+			gc.anchor = GridBagConstraints.FIRST_LINE_START;
+			add(new JLabel(TXT_NAME),gc);
+			
+			// Textfeld für den Restaurantnamen
+			gc.gridx = 1;
+			gc.gridy = 0;
+			gc.gridwidth = 1;
+			gc.gridheight=1;
+			gc.weightx=0.9;
+			gc.weighty=0;
+			gc.insets = new Insets(10, 0,10,20);
+			gc.fill = GridBagConstraints.HORIZONTAL;
+			gc.anchor = GridBagConstraints.FIRST_LINE_END;
+			txtName = new JTextField();
+			if (restaurant != null) {
+				txtName.setText(restaurant.getName());
+			}
+			add(txtName, gc);
+			
+			// Label für 1. Passworteingabe
+			gc.gridx = 0;
+			gc.gridy = 1;
+			gc.gridwidth = 1;
+			gc.gridheight=1;
+			gc.weightx=0.1;
+			gc.weighty=0;
+			gc.insets = new Insets(10,20,10,10);
+			gc.fill = GridBagConstraints.NONE;
+			gc.anchor = GridBagConstraints.FIRST_LINE_START;
+			add(new JLabel(TXT_PASSWORD1),gc);
+			
+			// 1. Passworteingabe
+			gc.gridx = 1;
+			gc.gridy = 1;
+			gc.gridwidth = 1;
+			gc.gridheight=1;
+			gc.weightx=0.9;
+			gc.weighty=0;
+			gc.insets = new Insets(10, 0,10,20);
+			gc.fill = GridBagConstraints.HORIZONTAL;
+			gc.anchor = GridBagConstraints.FIRST_LINE_END;
+			txtPassword1 = new JPasswordField();
+			if (restaurant != null) {
+				txtPassword1.setText(benutzer.getPassword());
+			}
+			add(txtPassword1, gc);
+			
+			// Label für die 2. Passworteingabe
+			gc.gridx = 0;
+			gc.gridy = 2;
+			gc.gridwidth = 1;
+			gc.gridheight=1;
+			gc.weightx=0.1;
+			gc.weighty=0;
+			gc.insets = new Insets(10,20,10,10);
+			gc.fill = GridBagConstraints.NONE;
+			gc.anchor = GridBagConstraints.FIRST_LINE_START;
+			add(new JLabel(TXT_PASSWORD2),gc);
+			
+			// 2. Passworteingabe
+			gc.gridx = 1;
+			gc.gridy = 2;
+			gc.gridwidth = 1;
+			gc.gridheight=1;
+			gc.weightx=0.9;
+			gc.weighty=0;
+			gc.insets = new Insets(10, 0,10,20);
+			gc.fill = GridBagConstraints.HORIZONTAL;
+			gc.anchor = GridBagConstraints.FIRST_LINE_END;
+			txtPassword2 = new JPasswordField();
+			if (restaurant != null) {
+				txtPassword2.setText(benutzer.getPassword());
+			}
+			add(txtPassword2, gc);
+			
+			// Panel für die Buttons
+			gc.gridx = 0;
+			gc.gridy = 3;
+			gc.gridwidth = 2;
+			gc.gridheight=1;
+			gc.weightx=0;
+			gc.weighty=0;
+			gc.insets = new Insets(10, 0,10,20);
+			gc.fill = GridBagConstraints.HORIZONTAL;
+			gc.anchor = GridBagConstraints.LAST_LINE_END;
+			JPanel buttonPanel = new JPanel();
+			add(buttonPanel, gc);
+			buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			buttonPanel.setBackground(GuiSettings.DEFAULT_HIGHLIGHT_COLOR);
+			
+			// OK-Button
+			ImageIcon icon = new ImageIcon(FILENAME_OK);
+			Image image = icon.getImage();
+			image = image.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+			icon.setImage(image);
+
+			JButton okButton = new JButton(TXT_SAVE, icon);
+			okButton.addActionListener(new OkButtonListener(this));
+			buttonPanel.add(okButton);
+			SwingUtilities.getRootPane(this).setDefaultButton(okButton);
+			
+			// Cancel-Button
+			icon = new ImageIcon(TXT_CANCEL);
+			image = icon.getImage();
+			image = image.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+			icon.setImage(image);
+
+			JButton cancelButton = new JButton(TXT_CANCEL, icon);
+			cancelButton.addActionListener(new CancelButtonListener(this));
+			buttonPanel.add(cancelButton);
+			
+			setVisible(true);
+		}
+
+		
+
+
+
+		
+	
+	}
+
+
