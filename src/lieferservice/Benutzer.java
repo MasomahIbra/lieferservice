@@ -6,6 +6,8 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
+import lieferservice.restaurant.Restaurant;
+
 public class Benutzer {
 	int 	id;
 	String	name,
@@ -27,21 +29,22 @@ public class Benutzer {
 	 * Illegale ID, für IDs, die noch nicht in der Datenbank gespeichert sind und für den Gastbenutzer
 	 */
 	public static final int ILLEGAL_ID = -1;
+	
 
 	// Das sind die Name der Spalten in der Datenbank"
 	private static final String NAME_ID = "ID";
 	private static final String NAME_NAME = "Name";
-	private static final String NAME_PASSWORT = "Passwort";
+	private static final String NAME_PASSWORD = "Passwort";
 	private static final String NAME_PA = "ProgrammAdministrator";
 	private static final String NAME_RA = "RestaurantAdministrator";
 	private static final String NAME_BB = "BestellungsBearbeiter";
 	private static final String NAME_ABRECHNER = "Abrechner";
 	
 	// Name für den Gastbenutzer
-	private static final String GUEST_NAME = "Gast";
+	public static final String GUEST_NAME = "Gast";
 	
 	// Legale Zeichen für den Benutzernamen
-	private static final String LEGAL_NAME_CHARACTERS = "[a-zA-Z\\d- ß_äöüÄÖÜ]+";
+	public static final String LEGAL_NAME_CHARACTERS = "[a-zA-Z\\d- ß_äöüÄÖÜ]+";
 	
 	// Anleitung für den Benutzernamen
 	public static final String ANLEITUNG_BENUTZERNAME = 
@@ -105,7 +108,7 @@ public class Benutzer {
 		this.password = password;
 		
 		if (id != ILLEGAL_ID) {
-			String sql = "UPDATE " + TABLE_NAME + " SET " + NAME_PASSWORT + " = \"" + this.password + "\" WHERE " + NAME_ID + " = " + this.id;
+			String sql = "UPDATE " + TABLE_NAME + " SET " + NAME_PASSWORD + " = \"" + this.password + "\" WHERE " + NAME_ID + " = " + this.id;
 			System.out.println(sql);
 			try {
 				Datenbank.befehlAusfuehren(sql);
@@ -358,7 +361,7 @@ public class Benutzer {
 			}
 
 			// Passwort überprüfen
-			pw = rs.getString(NAME_PASSWORT);
+			pw = rs.getString(NAME_PASSWORD);
 			if (pw.equals(password)) {
 
 				// Wenn das Passwort ok ist, dann melden wir den Benutzer an
@@ -416,7 +419,7 @@ public class Benutzer {
 				Benutzer b = new Benutzer(false);
 				b.id = rs.getInt(NAME_ID);
 				b.name = rs.getString(NAME_NAME);
-				b.password = rs.getString(NAME_PASSWORT);
+				b.password = rs.getString(NAME_PASSWORD);
 				b.programmAdministrator = rs.getString(NAME_PA);
 				b.restaurantAdministrator = rs.getString(NAME_RA);
 				b.bestellungsBearbeiter = rs.getString(NAME_BB);
@@ -492,7 +495,7 @@ public class Benutzer {
 		
 		// SQL Anweisung ausführen
 		sql = "INSERT INTO " + TABLE_NAME + " (" +
-				NAME_NAME + ", " + NAME_PASSWORT + ", " + NAME_PA + ", " + NAME_RA + ", " + NAME_BB + ", " + NAME_ABRECHNER + 
+				NAME_NAME + ", " + NAME_PASSWORD + ", " + NAME_PA + ", " + NAME_RA + ", " + NAME_BB + ", " + NAME_ABRECHNER + 
 				") VALUES ('" +
 				benutzerName + "', '" +
 				passwort + "', 'N', 'N', 'N', 'N')";
@@ -503,6 +506,7 @@ public class Benutzer {
 			e.printStackTrace();
 			System.exit(1);
 		}		
+	
 	}
 
 }

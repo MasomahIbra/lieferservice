@@ -1,0 +1,7 @@
+	public static final Object ERR_NO_SELECTION = null;
+	public static final String ERR_TITLE = null;
+	
+	
+	private static final String NEU_UEBA = "<html><b><u>N</u>eues Restaurant</b>";
+	private static final String AEND_UEBA = "<html><b>Restaurant editieren</b>";
+	private static final String loes_UEBA= "<html><b>Restaurant löschen</b>";

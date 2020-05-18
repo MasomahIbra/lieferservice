@@ -28,9 +28,6 @@ public class RestaurantVerwaltenPanel extends JPanel {
 	 * Uebaschrift Benennung und Stings ausgeben
 	 */
 	private static final String UEBA = "<html><b>Restaurant</b> verwalten";
-//	private static final String NEU_UEBA = "<html><b><u>N</u>euer Benutzer</b>";
-//	private static final String AEND_UEBA = "<html><b>Benutzer editieren</b>";
-//	private static final String loes_UEBA= "<html><b>Benutzer löschen</b>";
 
 
 
@@ -76,9 +73,7 @@ public class RestaurantVerwaltenPanel extends JPanel {
 	private static final int BUTTON_INSET_TOP = 5;
 	private static final int BUTTON_INSET_BOTTOM = 0;
 
-	public static final Object ERR_NO_SELECTION = null;
 
-	public static final String ERR_TITLE = null;
 
 
 
@@ -130,7 +125,7 @@ public class RestaurantVerwaltenPanel extends JPanel {
 		}
 
 	}
-
+ 
 
 
 	/**
@@ -153,7 +148,7 @@ public class RestaurantVerwaltenPanel extends JPanel {
 			Restaurant restaurant = model.getRestaurantInZeilen(row);
 
 			if (JOptionPane.showConfirmDialog(SwingUtilities.getRootPane(ueberfenster), SICHER_FRAGE + restaurant.getName() + LOESCHEN, LOESCHEN_RESTAURANT, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
-				restaurant.auDatenbankLoeschen();
+				restaurant.ausDatenbankLoeschen();
 				ueberfenster.updateModel();
 			}
 

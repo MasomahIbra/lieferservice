@@ -1,6 +1,5 @@
 package lieferservice.restaurant;
 
-import java.awt.Container;
 import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,15 +12,18 @@ import lieferservice.Datenbank;
 public class Restaurant {
 	int id;
 	String name;
-	String restaurantkategorie, adresse, telefon, email;
+	String restaurantkategorie; 
+	String adresse; 
+	String telefon; 
+	String email;
 	Image bildDesRestaurants;
+
 
 	// Das ist der Name der Tabelle für die Benutzer in der Datenbank
 	private static final String TABLE_NAME = "Restaurant";
 
 	/**
 	 * Illegale ID, für Datensätze, die noch nicht in der Datenbank gespeichert sind 
-	 * 
 	 */
 	public static final int ILLEGAL_ID = -1;
 
@@ -33,14 +35,29 @@ public class Restaurant {
 	private static final String NAME_TELEFON = "Telefon";
 	private static final String NAME_EMAIL = "E-Mail";
 	private static final String NAME_BDR = "BildDesRestaurants";
+	
+	// Schablone für eine Update-Anweisung
+	private static final String SQL_UPDATE = "UPDATE Restaurant SET Name = V1, Restaurantkategorie = V2, Adresse = V3, Telefon = V4, E-Mail = V5 WHERE ID = XXX"; 
 
 	// SQL-Anweisung zum Einlesen aller Restaurants
 	private static final String  SQL_ALLE_RESTAURANTS_EINLESEN =
 			"SELECT * FROM Restaurant ORDER BY Name COLLATE NOCASE ASC";
-	
-	public Restaurant(boolean b) {
-		// TODO Auto-generated constructor stub
+
+
+	/**
+	 * Dieser Konstruktor wird benutzt, um ein neues Restaurant zu erzeugen, das noch
+	 * nicht in der Datenbank gespeichert ist.
+	 */
+  	public Restaurant() {
+		this.id = ILLEGAL_ID;
+		this.name = "";
+		this.restaurantkategorie = "";
+		this.adresse = "";
+		this.telefon = "";
+		this.email = "";
+		this.bildDesRestaurants = null;
 	}
+
 
 
 	/**
@@ -93,55 +110,6 @@ public class Restaurant {
 
 	}
 
-	/**
-	 * Alle Restaurants aus der Datenbank in einer Liste speichern 
-	 *@return die Liste mit der Restaurants
-	 */
-	public static Vector<Restaurant> alleRestaurants () {
-		try {
-			Vector<Restaurant> res = new Vector <Restaurant>();
-			ResultSet rs;
-			rs=Datenbank.abfragen(SQL_ALLE_RESTAURANTS_EINLESEN);
-
-
-			while (rs.next()) {
-				Restaurant r = new Restaurant (false);
-				r.id = rs.getInt(NAME_ID);
-				r.name = rs.getString(NAME_NAME);
-				r.restaurantkategorie = rs.getString(NAME_RK);
-				r.adresse = rs.getString(NAME_ADRESSE);
-				r.telefon = rs.getString(NAME_TELEFON);
-				r.email = rs.getString(NAME_EMAIL);
-				//r.bildDesRestaurants = rs.getImage(NAME_BILDRESTAURANTS);
-				res.add(r);
-
-			}
-			return res;
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, e.getMessage());
-			System.exit(1);
-			return null;
-
-
-		}
-
-	}
-
-
-	public void auDatenbankLoeschen() {
-		try {
-			String sql = "DELETE FROM " + TABLE_NAME + " WHERE " + NAME_ID + " = " + this.id;
-			Datenbank.befehlAusfuehren(sql);
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-			System.exit(1);
-			
-		}
-	}
-
 
 	/**
 	 * @param id the id to set
@@ -165,7 +133,7 @@ public class Restaurant {
 	 * @param restaurantkategorie the restaurantkategorie to set
 	 */
 	public void setRestaurantkategorie(String restaurantkategorie) {
-		this.restaurantkategorie = restaurantkategorie;
+		this.restaurantkategorie = restaurantkategorie.strip();
 	}
 
 
@@ -173,7 +141,7 @@ public class Restaurant {
 	 * @param telefon the telefon to set
 	 */
 	public void setTelefon(String telefon) {
-		this.telefon = telefon;
+		this.telefon = telefon.strip();
 	}
 
 
@@ -181,7 +149,7 @@ public class Restaurant {
 	 * @param adresse the adresse to set
 	 */
 	public void setAdresse(String adresse) {
-		this.adresse = adresse;
+		this.adresse = adresse.strip();
 	}
 
 
@@ -189,7 +157,7 @@ public class Restaurant {
 	 * @param email the email to set
 	 */
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.strip();
 	}
 
 
@@ -200,13 +168,132 @@ public class Restaurant {
 		this.bildDesRestaurants = bildDesRestaurants;
 	}
 
+	
+	/**
+	 * Alle Restaurants aus der Datenbank in einer Liste speichern 
+	 * @return die Liste mit den Restaurants
+	 */
+	public static Vector<Restaurant> alleRestaurants () {
+		try {
+			Vector<Restaurant> res = new Vector <Restaurant>();
+			ResultSet rs;
+			rs=Datenbank.abfragen(SQL_ALLE_RESTAURANTS_EINLESEN);
 
-
-
-
+			while (rs.next()) {
+				Restaurant r = new Restaurant();
+				r.id = rs.getInt(NAME_ID);
+				r.name = rs.getString(NAME_NAME);
+				r.restaurantkategorie = rs.getString(NAME_RK);
+				r.adresse = rs.getString(NAME_ADRESSE);
+				r.telefon = rs.getString(NAME_TELEFON);
+				r.email = rs.getString(NAME_EMAIL);
+				//r.bildDesRestaurants = rs.getImage(NAME_BILDRESTAURANTS);
+				res.add(r);
+			}
+			return res;
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			System.exit(1);
+			return null;
+		}
+	}
 
 	
+	/**
+	 * Die Methode dient dazu, um dieses Restaurant in der Datenbank zu speichern
+	 */
+	public void inDerDatenbankSpeichern () {
+		final String CMD_NEUER_DATENSATZ = "INSERT INTO " + TABLE_NAME + 
+				" (" + NAME_NAME + ", " +
+				NAME_RK + ", " +
+				NAME_ADRESSE + ", " +
+				NAME_TELEFON + ", " +
+				NAME_EMAIL + ") VALUES (\"" +
+				this.name + "\", \"" +
+				this.restaurantkategorie + "\", \"" +
+				this.adresse + "\", \"" +
+				this.telefon + "\", \"" +
+				this.email + "\");";
+		
+		String cmdUpdate = SQL_UPDATE;
+		cmdUpdate.replace("V1", "\"" + this.name + "\"");
+		cmdUpdate.replace("V2", "\"" + this.restaurantkategorie + "\"");
+		cmdUpdate.replace("V3", "\"" + this.adresse + "\"");
+		cmdUpdate.replace("V4", "\"" + this.telefon + "\"");
+		cmdUpdate.replace("V5", "\"" + this.email + "\"");
+		cmdUpdate.replace("XXX", "\"" + this.id + "\"");
+	
+		try {
+//			int i = 0;
+//			
+//			if (i == 0) {
+//				System.out.println("ist null");
+//			} else {
+//				System.out.println("ist nicht null");
+//			}
+//			
+//			System.out.println((i == 0) ? "ist null" : "ist nicht null");
+			
+			Datenbank.befehlAusfuehren((this.id == ILLEGAL_ID) ? CMD_NEUER_DATENSATZ : cmdUpdate);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+	}
 
+	
+	
+	
+	
+	/**
+	 * Diese Methode löscht das Restaurant aus der Datenbank
+	 */
+	public void ausDatenbankLoeschen() {
+		try {
+			if (this.id == ILLEGAL_ID) {
+				throw new IllegalStateException("Ey, den Datensatz gibt's nicht! Manno");
+			}
+			String sql = "DELETE FROM " + TABLE_NAME + " WHERE " + NAME_ID + " = " + this.id;
+			Datenbank.befehlAusfuehren(sql);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			System.exit(1);
 
+		}
+	}
+	
+	
+	/**
+	 * Diese Methode prüft, ob das Restaurant gültige Daten hat. Falls nicht, 
+	 * wird eine Fehlermeldung zurückgegeben.
+	 * @return String mit der Fehlermeldung oder null, falls alles ok ist.
+	 */
+	public String pruefen() {
+		// Namen prüfen: der Name darf nicht leer sein
+		if (this.name.isEmpty())
+			return "Der Name des Restaurants darf nicht leer sein.";
+		
+		// Kategorie prüfen: die Kategorie darf nicht leer sein
+		if (this.restaurantkategorie.isEmpty())
+			return "Die Restaurantkategorie darf nicht leer sein.";
+		
+		// Adresse prüfen: die Adresse darf nicht leer sein
+		if (this.adresse.isEmpty())
+			return "Die Adresse darf nicht leer sein";
+		
+		// E-Mail prüfen
+		if (this.email.isEmpty())
+			return "Die E-Mail darf nicht leer sein.";
+		if (this.email.equalsIgnoreCase("masomah01@gmail.com"))
+			return "nix da. Meine E-Mail nimmst Du nicht für Dein schäbiges Restaurant. Gruß, Masomah";
+		
+		// Bild des Restaurants prüfen: keine Prüfung
+		
+		return null; // alles ok
+	}
+	
 }
-
